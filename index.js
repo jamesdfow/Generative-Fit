@@ -5,8 +5,11 @@ const app = express();
 const port = 3010;
 const usersRouter = require('./routes/users')
 const workoutsRouter = require('./routes/workouts')
+const logsRouter = require('./routes/logs')
+
 app.use(express.json())
 
+app.use('/api/logs', logsRouter)
 app.use('/api/workouts', workoutsRouter)
 app.use('/api/users', usersRouter)
 app.listen(port, function (err) {

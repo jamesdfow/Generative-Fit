@@ -58,4 +58,31 @@ router.post('/generate', async (req, res) => {
   }
 })
 
+router.get('/:userId', async (req, res) => {
+  const { userId } = req.params
+
+  try {
+    const workoutResult = await db.query(
+      `SELECT * FROM workouts WHERE user_id = $1 ORDER BY created_at DESC LIMIT 1`,
+      [userId]
+    )
+    const workout = workoutResult.rows[0]
+
+    if (!workout) {
+      return res.status(404).json({ error: 'No workout found for this user' })
+    }
+
+    const exercisesResult = await db.query(
+      `SELECT * FROM exercises WHERE workout_id = $1`,
+      [workout.id]
+    )
+
+    res.status(200).json({ workout, exercises: exercisesResult.rows })
+
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Failed to fetch workout' })
+  }
+})
+
 module.exports = router
