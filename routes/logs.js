@@ -1,8 +1,9 @@
+const authenticateToken = require('../middleware/auth')
 const express = require('express')
 const router = express.Router()
 const db = require('../db')
 
-router.post('/', async (req, res) => {
+router.post('/', authenticateToken, async (req, res) => {
   const { exercise_id, user_id, actual_sets, actual_reps, weight, notes } = req.body
 
   try {
@@ -19,7 +20,7 @@ router.post('/', async (req, res) => {
   }
 })
 
-router.get('/:userId', async (req, res) => {
+router.get('/:userId', authenticateToken, async (req, res) => {
   const { userId } = req.params
 
   try {

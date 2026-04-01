@@ -6,9 +6,11 @@ const port = 3010;
 const usersRouter = require('./routes/users')
 const workoutsRouter = require('./routes/workouts')
 const logsRouter = require('./routes/logs')
+const authRouter = require('./routes/auth')
 
 app.use(express.json())
 
+app.use('/api/auth', authRouter)
 app.use('/api/logs', logsRouter)
 app.use('/api/workouts', workoutsRouter)
 app.use('/api/users', usersRouter)
