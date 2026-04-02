@@ -12,7 +12,9 @@ function WorkoutPlan() {
   useEffect(() => {
     const fetchWorkout = async () => {
       try {
-        const res = await axios.get(`/api/workouts/${userId}`)
+        const res = await axios.get(`/api/workouts/${userId}`, {
+  headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+})
         setWorkout(res.data.workout)
         setExercises(res.data.exercises)
       } catch (err) {

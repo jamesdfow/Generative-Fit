@@ -23,9 +23,11 @@ function LogExercise() {
     e.preventDefault()
     try {
       await axios.post('/api/logs', {
-        user_id: userId,
-        exercise_id: exerciseId,
-        ...formData
+  user_id: userId,
+  exercise_id: exerciseId,
+  ...formData
+}, {
+  headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       navigate(`/workout?userId=${userId}`)
     } catch (err) {
