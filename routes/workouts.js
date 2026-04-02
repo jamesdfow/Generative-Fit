@@ -1,10 +1,11 @@
+const authenticateToken = require('../middleware/auth')
 const express = require('express')
 const router = express.Router()
 const db = require('../db')
 const Anthropic = require('@anthropic-ai/sdk')
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
-router.post('/generate', async (req, res) => {
+router.post('/generate', authenticateToken, async (req, res) => {
   const { user_id, goal, experience_level, days_per_week, equipment } = req.body
 
   try {
@@ -58,7 +59,7 @@ router.post('/generate', async (req, res) => {
   }
 })
 
-router.get('/:userId', async (req, res) => {
+router.get('/:userId', authenticateToken, async (req, res) => {
   const { userId } = req.params
 
   try {
