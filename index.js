@@ -9,7 +9,9 @@ const logsRouter = require('./routes/logs')
 const authRouter = require('./routes/auth')
 const cors = require('cors');
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://generative-fit.vercel.app'
+}))
 app.use(express.json())
 
 app.use('/api/auth', authRouter)
