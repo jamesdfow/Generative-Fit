@@ -13,7 +13,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const res = await api.post('/api/auth/login', formData)
+      const res = await api.post('/auth/login', formData)
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('userId', res.data.user.id)
       navigate(`/workout?userId=${res.data.user.id}`)

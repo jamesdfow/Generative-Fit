@@ -22,7 +22,7 @@ function LogExercise() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await api.post('/api/logs', {
+      await api.post('/logs', {
         user_id: userId,
         exercise_id: exerciseId,
         ...formData

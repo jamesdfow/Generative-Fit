@@ -13,7 +13,7 @@ function WorkoutPlan() {
   useEffect(() => {
     const fetchWorkout = async () => {
       try {
-        const res = await api.get(`/api/workouts/${userId}`, {
+        const res = await api.get(`/workouts/${userId}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         })
         setWorkout(res.data.workout)

@@ -26,10 +26,10 @@ function Register() {
     e.preventDefault()
     setLoading(true)
     try {
-      const res = await api.post('/api/auth/register', formData)
+      const res = await api.post('/auth/register', formData)
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('userId', res.data.user.id)
-      await api.post('/api/workouts/generate', {
+      await api.post('/workouts/generate', {
         user_id: res.data.user.id,
         goal: res.data.user.goal,
         experience_level: res.data.user.experience_level,
