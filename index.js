@@ -14,6 +14,10 @@ app.use(cors({
 }))
 app.use(express.json())
 
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' })
+})
+
 app.use('/api/auth', authRouter)
 app.use('/api/logs', logsRouter)
 app.use('/api/workouts', workoutsRouter)
