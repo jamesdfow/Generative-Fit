@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import axios from 'axios'
+import api from '../api'
 import { useNavigate } from 'react-router-dom'
 
 function Register() {
@@ -26,10 +26,10 @@ function Register() {
     e.preventDefault()
     setLoading(true)
     try {
-      const res = await axios.post('/api/auth/register', formData)
+      const res = await api.post('/api/auth/register', formData)
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('userId', res.data.user.id)
-      await axios.post('/api/workouts/generate', {
+      await api.post('/api/workouts/generate', {
         user_id: res.data.user.id,
         goal: res.data.user.goal,
         experience_level: res.data.user.experience_level,

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
+import api from '../api'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 
 function WorkoutPlan() {
@@ -13,7 +13,7 @@ function WorkoutPlan() {
   useEffect(() => {
     const fetchWorkout = async () => {
       try {
-        const res = await axios.get(`/api/workouts/${userId}`, {
+        const res = await api.get(`/api/workouts/${userId}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         })
         setWorkout(res.data.workout)
