@@ -10,8 +10,11 @@ const authRouter = require('./routes/auth')
 const cors = require('cors');
 
 app.use(cors({
-  origin: 'https://generative-fit.vercel.app'
+  origin: 'https://generative-fit.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }))
+app.options('*', cors())
 app.use(express.json())
 
 app.get('/health', (req, res) => {
