@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import axios from 'axios'
+import api from '../api'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 
 function LogExercise() {
@@ -22,7 +22,7 @@ function LogExercise() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await axios.post('/api/logs', {
+      await api.post('/logs', {
         user_id: userId,
         exercise_id: exerciseId,
         ...formData
